@@ -1,15 +1,17 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A basic Express.js application",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./src/index.js"
+    "start": "nodemon ./src/index.js",
+    "start:prod": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Your Name",
+  "license": "MIT",
+  "private": true,
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
