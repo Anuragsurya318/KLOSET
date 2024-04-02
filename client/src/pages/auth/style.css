@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   background-color: #f2f2f2;
 }
 
@@ -30,8 +30,29 @@ label {
   margin-bottom: 5px;
 }
 
+.submit {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+
+  &:hover {
+    background-color: #333;
+  }
+}
+
 input {
   padding: 10px;
   font-size: 16px;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 480px) {
+  .auth {
+    height: 75vh;
+  }
 }

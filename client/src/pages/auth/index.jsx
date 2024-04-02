@@ -7,15 +7,20 @@ import { UserErrors } from "../../models/errors";
 import { ShopContext } from "../../context/shop-context";
 
 export const AuthPage = () => {
+  const [isRegistering, setIsRegistering] = useState(true);
+
   return (
     <div className="auth">
-      <Register />
-      <Login />
+      {isRegistering ? (
+        <Register onLoginClick={() => setIsRegistering(false)} />
+      ) : (
+        <Login onRegisterClick={() => setIsRegistering(true)} />
+      )}
     </div>
   );
 };
 
-const Login = () => {
+const Login = ({ onRegisterClick }) => {
   const [_, setCookies] = useCookies(["access_token"]);
   const { setIsAuthenticated } = useContext(ShopContext);
 
@@ -76,13 +81,24 @@ const Login = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="submit">
+          Login
+        </button>
       </form>
+      <p>
+        New user?{" "}
+        <span
+          style={{ textDecoration: "underline", cursor: "pointer", fontWeight: "bold" }}
+          onClick={onRegisterClick}
+        >
+          Please register
+        </span>
+      </p>
     </div>
   );
 };
 
-const Register = () => {
+const Register = ({ onLoginClick }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -125,8 +141,19 @@ const Register = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" className="submit">
+          Register
+        </button>
       </form>
+      <p>
+        Already a user?{" "}
+        <span
+          style={{ textDecoration: "underline", cursor: "pointer", fontWeight: "bold" }}
+          onClick={onLoginClick}
+        >
+          Please login
+        </span>
+      </p>
     </div>
   );
 };

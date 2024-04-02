@@ -2,9 +2,9 @@
   margin-top: 100px;
   width: 100%;
   height: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  place-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 
 .purchased-items .item {
@@ -13,12 +13,12 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+  width: 300px;
 }
 
 .purchased-items .item img {
   width: 200px;
   height: 200px;
-
   background-color: #ccc;
   background-size: cover;
   background-position: center;
@@ -26,18 +26,26 @@
 }
 
 .purchased-items button {
-  background-color: transparent;
-  border: 2px solid rgb(19, 19, 19);
+  background-color: black;
+  color: white;
+  border: none;
   min-width: 100px;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
 .purchased-items button:hover {
-  background-color: rgb(19, 19, 19);
-  color: white;
-  cursor: pointer;
+  background-color: #333;
+}
+
+@media (max-width: 767px) {
+  .purchased-items {
+    justify-content: center;
+  }
 }
