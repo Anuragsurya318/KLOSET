@@ -18,6 +18,9 @@ app.use(
   )
 );
 
+app.get("/", (req, res) => {
+  res.send("Welcome to Kloset API");
+});
 app.use("/user", userRouter);
 app.use("/product", productRouter);
 
