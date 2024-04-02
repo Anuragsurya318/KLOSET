@@ -10,7 +10,7 @@ app.use(
   cors(
     app.use(
       cors({
-        origin: ["https://kloset.vercel.app"],
+        origin: ["https://kloset.vercel.app", "http://localhost:3000"],
         methods: ["GET", "POST"],
         credentials: true,
       })
