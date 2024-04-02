@@ -6,7 +6,15 @@ import { productRouter } from "./routes/product.js";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors(
+    app.use(
+      cors({
+        origin: "https://kloset.vercel.app",
+      })
+    )
+  )
+);
 
 app.use("/user", userRouter);
 app.use("/product", productRouter);
