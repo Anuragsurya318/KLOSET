@@ -1,4 +1,6 @@
 import express from "express";
+import dotenv from "dotenv";
+dotenv.config();
 import cors from "cors";
 import mongoose from "mongoose";
 import { userRouter } from "./src/routes/user.js";
@@ -24,10 +26,8 @@ app.get("/", (req, res) => {
 app.use("/user", userRouter);
 app.use("/product", productRouter);
 
-mongoose.connect(
-  "mongodb+srv://anuragsurya100:3huC6haEccpmJsOD@cluster0.epazexe.mongodb.net/project2"
-);
+mongoose.connect(process.env.MONGODB_URI);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("SERVER STARTED");
 });
