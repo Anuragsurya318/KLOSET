@@ -25,7 +25,7 @@ const Navbar = () => {
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
   const { auth, logout } = useAuth();
-  const { cartItems } = useCart();
+  const { cartItems, clearCart } = useCart();
 
   const handleCategoriesClick = () => {
     navigate("/categories");
@@ -54,6 +54,20 @@ const Navbar = () => {
 
   const handlePurchasedItemsClick = () => {
     navigate("/previously-purchased-items");
+  };
+
+  const handleCheckout = () => {
+    if (!auth.isLoggedIn) {
+      setIsLoginForm(true); // Set to true to show login form
+      setShowDialog(true); // Open dialog
+    } else {
+      clearCart();
+      navigate("/");
+    }
+  };
+
+  const calculateSubtotal = () => {
+    return cartItems.reduce((total, item) => total + item.price, 0);
   };
 
   return (
@@ -131,6 +145,18 @@ const Navbar = () => {
                         ))}
                       </ul>
                     )}
+                    <div className="mt-4 flex justify-between">
+                      <span className="font-bold">Subtotal:</span>
+                      <span>₹{calculateSubtotal()}</span>
+                    </div>
+                    <div className="mt-4 flex justify-end">
+                      <button
+                        onClick={handleCheckout}
+                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                      >
+                        Checkout
+                      </button>
+                    </div>
                   </div>
                   <SheetClose>Close</SheetClose>
                 </SheetContent>

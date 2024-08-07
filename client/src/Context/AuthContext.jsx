@@ -1,5 +1,4 @@
-// Context/AuthContext.jsx
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -13,6 +12,13 @@ export const AuthProvider = ({ children }) => {
     purchasedItems: [],
   });
   const [error, setError] = useState(""); // Add error state
+
+  useEffect(() => {
+    const savedAuth = JSON.parse(localStorage.getItem("auth"));
+    if (savedAuth) {
+      setAuth(savedAuth);
+    }
+  }, []);
 
   const login = async (username, password) => {
     try {
@@ -39,7 +45,9 @@ export const AuthProvider = ({ children }) => {
       const { purchasedItems } = purchasedItemsResponse.data;
 
       // Update auth state
-      setAuth({ isLoggedIn: true, token, availableMoney, userID, purchasedItems });
+      const newAuthState = { isLoggedIn: true, token, availableMoney, userID, purchasedItems };
+      setAuth(newAuthState);
+      localStorage.setItem("auth", JSON.stringify(newAuthState)); // Save to localStorage
       setError(""); // Clear any previous error on successful login
     } catch (error) {
       console.error("Login failed", error);
@@ -56,13 +64,15 @@ export const AuthProvider = ({ children }) => {
       userID: null,
       purchasedItems: [],
     });
+    localStorage.removeItem("auth"); // Clear localStorage
   };
 
   const updateAvailableMoney = (newAmount) => {
-    setAuth((prevAuth) => ({
-      ...prevAuth,
-      availableMoney: newAmount,
-    }));
+    setAuth((prevAuth) => {
+      const updatedAuth = { ...prevAuth, availableMoney: newAmount };
+      localStorage.setItem("auth", JSON.stringify(updatedAuth)); // Update localStorage
+      return updatedAuth;
+    });
   };
 
   const purchaseProduct = async (userID, productID, productPrice, quantity) => {
@@ -75,11 +85,9 @@ export const AuthProvider = ({ children }) => {
         }
       );
       const { availableMoney, purchasedItems } = response.data; // Get updated purchasedItems
-      setAuth((prevAuth) => ({
-        ...prevAuth,
-        availableMoney,
-        purchasedItems, // Update purchasedItems in auth state
-      }));
+      const updatedAuth = { ...auth, availableMoney, purchasedItems };
+      setAuth(updatedAuth);
+      localStorage.setItem("auth", JSON.stringify(updatedAuth)); // Update localStorage
     } catch (error) {
       console.error("Purchase failed", error);
     }
@@ -95,11 +103,9 @@ export const AuthProvider = ({ children }) => {
         }
       );
       const { availableMoney, purchasedItems } = response.data;
-      setAuth((prevAuth) => ({
-        ...prevAuth,
-        availableMoney,
-        purchasedItems,
-      }));
+      const updatedAuth = { ...auth, availableMoney, purchasedItems };
+      setAuth(updatedAuth);
+      localStorage.setItem("auth", JSON.stringify(updatedAuth)); // Update localStorage
     } catch (error) {
       console.error("Purchase all failed", error);
     }
@@ -121,4 +127,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 export const useAuth = () => useContext(AuthContext);

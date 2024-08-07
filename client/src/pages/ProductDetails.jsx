@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useCart } from "@/Context/CartContext";
 import { useAuth } from "@/Context/AuthContext";
 import LoginForm from "../components/LoginForm";
@@ -12,6 +12,7 @@ import {
   DialogDescription,
   DialogHeader,
 } from "@/components/ui/dialog";
+import { Toaster, toast } from "sonner"; // Import the Toaster and toast from Sonner
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -25,7 +26,6 @@ const ProductDetails = () => {
   const [loginError, setLoginError] = useState("");
   const [redirectPath, setRedirectPath] = useState("/"); // New state for redirect path
   const location = useLocation();
-
   const [showConfirmDialog, setShowConfirmDialog] = useState(false); // New state for confirm dialog
 
   useEffect(() => {
@@ -76,8 +76,10 @@ const ProductDetails = () => {
     try {
       await purchaseProduct(auth.userID, product._id, product.price * quantity, quantity);
       setShowConfirmDialog(false);
+      toast.success("Transaction Successful"); // Show success toast message
     } catch (error) {
       console.error("Error purchasing product:", error);
+      toast.error("Transaction Failed"); // Show error toast message if needed
     }
   };
 
@@ -176,6 +178,7 @@ const ProductDetails = () => {
           </div>
         </DialogContent>
       </Dialog>
+      <Toaster /> {/* Add Toaster component */}
     </div>
   );
 };
