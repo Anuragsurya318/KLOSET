@@ -91,32 +91,32 @@ const CategoriesPage = () => {
   const categories = ["All", "Furniture", "Electronics", "Lamp", "Kitchen", "Chair", "Skin Care"];
 
   return (
-    <div>
-      <div className="w-[87%] m-auto mt-20 lg:mt-28 text-xl font-semibold mb-10 lg:text-2xl">
+    <div className="w-full">
+      <div className="w-[87%] m-auto mt-12 text-xl font-semibold lg:text-2xl">
         Products in {selectedCategory}
       </div>
-      <div className="pl-9 lg:pl-[88px]">
-        <div className="flex gap-4 mb-4">
+      <div className="w-[87%] m-auto ">
+        <div className="flex flex-wrap gap-4 my-8">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => handleCategoryChange(category)}
-              className={`px-4 py-2 border rounded ${
-                selectedCategory === category ? "bg-blue-500 text-white" : "bg-gray-200"
+              className={`px-4 py-2 border-2 text-base lg:text-lg font-semibold border-black ${
+                selectedCategory === category ? "bg-black text-white" : "bg-transparent"
               }`}
             >
               {category}
             </button>
           ))}
         </div>
-        <div className="flex flex-wrap gap-5 m-auto">
+        <div className="flex flex-wrap gap-5 m-auto mb-16">
           {filteredProducts.map((product) => {
             const mainImage = product.images.find((image) => image.description === "main view");
 
             return (
               <div
                 key={product._id}
-                className="border-2 border-gray-300 hover:border-gray-600 duration-700 cursor-pointer w-[45%] h-72 flex flex-col justify-between lg:h-[340px] lg:w-[22%]"
+                className="border-2 border-gray-300 hover:border-gray-600 duration-700 cursor-pointer w-[47%] h-72 flex flex-col justify-between lg:h-[340px] lg:w-[23.8%]"
                 onClick={() => handleProductClick(product._id)}
               >
                 <div className="w-[90%] lg:w-full">

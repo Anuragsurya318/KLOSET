@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { PiShoppingCart } from "react-icons/pi";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { AiOutlineClose } from "react-icons/ai"; // Import cross icon
 import logo from "../../public/ecommerce-logo.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/Context/AuthContext";
@@ -9,7 +10,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -25,7 +25,7 @@ const Navbar = () => {
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
   const { auth, logout } = useAuth();
-  const { cartItems, clearCart } = useCart();
+  const { cartItems, clearCart, removeFromCart } = useCart();
 
   const handleCategoriesClick = () => {
     navigate("/categories");
@@ -41,6 +41,10 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleHomeClick = () => {
+    navigate("/");
   };
 
   const handleAuthClick = () => {
@@ -130,7 +134,6 @@ const Navbar = () => {
                 <SheetContent className="overflow-auto">
                   <SheetHeader>
                     <SheetTitle>Cart Items</SheetTitle>
-                    <SheetDescription>Review items in your cart.</SheetDescription>
                   </SheetHeader>
                   <div className="mt-4">
                     {cartItems.length === 0 ? (
@@ -141,6 +144,10 @@ const Navbar = () => {
                           <li key={index} className="flex justify-between py-2 border-b">
                             <span>{item.productName}</span>
                             <span>₹{item.price}</span>
+                            <AiOutlineClose
+                              className="text-red-500 cursor-pointer"
+                              onClick={() => removeFromCart(item._id)}
+                            />
                           </li>
                         ))}
                       </ul>
@@ -178,16 +185,48 @@ const Navbar = () => {
           </button>
           <span
             className="text-xl py-2 cursor-pointer hover:bg-gray-200 w-full text-center mt-12"
+            onClick={handleHomeClick}
+          >
+            Home
+          </span>
+          <span
+            className="text-xl py-2 cursor-pointer hover:bg-gray-200 w-full text-center"
             onClick={handleCategoriesClick}
           >
             CATEGORIES
           </span>
-          <span
-            className="text-xl py-2 cursor-pointer hover:bg-gray-200 w-full text-center"
-            onClick={handleProductPageClick}
-          >
-            PRODUCT PAGE
-          </span>
+          {auth.isLoggedIn && (
+            <>
+              <span
+                className="text-xl py-2 cursor-pointer hover:bg-gray-200 w-full text-center"
+                onClick={handlePurchasedItemsClick}
+              >
+                Previously Purchased Items
+              </span>
+              <span
+                className="text-xl py-2 cursor-pointer hover:bg-gray-200 w-full text-center"
+                onClick={handleAuthClick}
+              >
+                LOGOUT
+              </span>
+            </>
+          )}
+          {!auth.isLoggedIn && (
+            <span
+              className="text-xl py-2 cursor-pointer hover:bg-gray-200 w-full text-center"
+              onClick={handleAuthClick}
+            >
+              Sign Up
+            </span>
+          )}
+          {auth.isLoggedIn && (
+            <div className="relative text-xl py-2 cursor-pointer hover:bg-gray-200 w-full text-center">
+              <span>₹{auth.availableMoney}</span>
+              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 hidden group-hover:block shadow-xl text-black text-xs rounded py-1 px-2 z-10">
+                Available Money
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
