@@ -11,7 +11,7 @@ const RegistrationPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/user/register", { username, password });
+      await axios.post("https://kloset.onrender.com/user/register", { username, password });
       navigate("/login"); // Redirect to login page after registration
     } catch (err) {
       setError("Registration failed. Please try again.");

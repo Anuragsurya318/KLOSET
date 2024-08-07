@@ -12,7 +12,7 @@ const PreviouslyPurchasedItems = () => {
     const fetchPurchasedItems = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/product/purchased-items/${auth.userID}`,
+          `https://kloset.onrender.com/product/purchased-items/${auth.userID}`,
           {
             headers: { Authorization: auth.token },
           }

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "@/Context/CartContext";
+import HomePageComponent from "@/components/HomePageComponent";
+import CarouselComp from "@/components/CarouselComp";
 
 const ProductsWeAreProudOf = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +13,7 @@ const ProductsWeAreProudOf = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/product");
+        const response = await axios.get("https://kloset.onrender.com/product");
         setProducts(response.data.products);
       } catch (error) {
         console.error("Error fetching products", error);
@@ -19,10 +21,6 @@ const ProductsWeAreProudOf = () => {
     };
     fetchProducts();
   }, []);
-
-  const handleAddToCart = (product) => {
-    addToCart(product);
-  };
 
   const handleProductClick = (productId) => {
     navigate(`/categories/product/${productId}`);
@@ -34,41 +32,56 @@ const ProductsWeAreProudOf = () => {
         <div className="w-[87%] m-auto mt-20 lg:mt-28 text-xl font-semibold mb-10 lg:text-2xl">
           Products We Are Proud Of
         </div>
-        <div className="pl-9 lg:pl-[88px]">
-          <div className="flex flex-wrap gap-5 m-auto">
+        <div className="w-full">
+          <div className="flex w-[87%] flex-wrap gap-5 m-auto">
             {products.map((product) => {
               const mainImage = product.images.find((image) => image.description === "main view");
 
               return (
                 <div
                   key={product._id}
-                  className="border-2 border-gray-300 hover:border-gray-600 duration-700 cursor-pointer w-[45%] h-72 flex flex-col justify-between lg:h-[340px] lg:w-[22%]"
+                  className="border-2 border-gray-300 hover:border-gray-600 duration-700 cursor-pointer w-[47%] h-[270px] flex flex-col justify-between lg:h-[350px] lg:w-[23.7%]"
                   onClick={() => handleProductClick(product._id)}
                 >
-                  <div className="w-[90%] lg:w-full">
+                  <div className="w-full">
                     <img
                       src={mainImage ? mainImage.url : "default-image-url.jpg"}
                       alt={product.productName}
-                      className="lg:w-[80%] m-auto object-cover"
+                      className="lg:w-[80%] m-auto object-contain"
                     />
                   </div>
                   <div className="ml-2 mb-2">
-                    <h2 className="text-lg mb-1">{product.productName}</h2>
-                    <p className="text-xl font-semibold">₹{product.price}</p>
+                    <h2 className="text-lg mb-1 font-bold">{product.productName}</h2>
+                    <p className="lg:text-2xl  font-semibold text-gray-500">₹{product.price}</p>
                   </div>
-                  {/* <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent click event from bubbling up
-                      handleAddToCart(product);
-                    }}
-                  >
-                    Add to Cart
-                  </button> */}
                 </div>
               );
             })}
           </div>
         </div>
+        <HomePageComponent
+          heading={"Comfortable & Elegante Living"}
+          para={
+            "RAOUF Products are all made to standard sizes so that you can mix and match them freely."
+          }
+          imageLink={
+            "https://minimalist-e-commerce.vercel.app/static/media/banner2.03a2ebf8d998e53d1019.jpg"
+          }
+          where={"/categories"}
+          straight={false}
+        />
+        <CarouselComp />
+        <HomePageComponent
+          heading={"Creative harmonious living"}
+          para={
+            "RAOUF Products are all made to standard sizes so that you can mix and match them freely."
+          }
+          imageLink={
+            "https://minimalist-e-commerce.vercel.app/static/media/banner1.021adea5caa612e7dea0.jpg"
+          }
+          where={"/categories"}
+          straight={true}
+        />
       </div>
     </>
   );

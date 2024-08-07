@@ -31,7 +31,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/product");
+        const response = await axios.get("https://kloset.onrender.com/product");
         const foundProduct = response.data.products.find((product) => product._id === id);
         if (foundProduct) {
           setProduct(foundProduct);
@@ -178,7 +178,7 @@ const ProductDetails = () => {
           </div>
         </DialogContent>
       </Dialog>
-      <Toaster /> {/* Add Toaster component */}
+      <Toaster />
     </div>
   );
 };

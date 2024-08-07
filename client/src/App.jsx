@@ -7,6 +7,7 @@ import ProductDetails from "./pages/ProductDetails"; // Import your new product 
 import ProductPage from "./pages/ProductPage";
 import { CartProvider } from "./Context/CartContext";
 import PreviouslyPurchasedItems from "./pages/PreviouslyPurchasedItems";
+import Footer from "./section/Footer";
 
 const App = () => (
   <div className="font-sans">
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/previously-purchased-items" element={<PreviouslyPurchasedItems />} />
             {/* Add this route */}
           </Routes>
+          <Footer />
         </Router>
       </CartProvider>
     </AuthProvider>
