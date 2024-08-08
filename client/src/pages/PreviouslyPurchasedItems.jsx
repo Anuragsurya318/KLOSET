@@ -44,19 +44,35 @@ const PreviouslyPurchasedItems = () => {
     count: productCounts[item._id] || 0,
   }));
 
+  console.log(purchasedItems);
+
   return (
-    <div className="p-6">
+    <div className="w-[87%] m-auto pt-16 mb-16">
       <h1 className="text-2xl font-semibold mb-4">Previously Purchased Items</h1>
       {aggregatedItems.length === 0 ? (
         <p>No purchased items found.</p>
       ) : (
-        <ul>
+        <ul className="flex flex-wrap gap-4">
           {aggregatedItems.map((item, index) => (
-            <li key={index} className="py-2 border-b">
-              <h2 className="text-xl font-semibold">{item.productName}</h2>
-              <p>Price: ₹{item.price}</p>
-              <p>Description: {item.description}</p>
-              <p>Quantity Purchased: {item.count}</p> {/* Display the count */}
+            <li
+              key={index}
+              className="border-2 border-gray-300 hover:border-gray-600 duration-700 cursor-pointer w-[47%] h-72 flex flex-col justify-between lg:h-[340px] lg:w-[22%]"
+            >
+              <div className="w-[90%] lg:w-full">
+                <img
+                  src={item.images[0].url ? item.images[0].url : "default-image-url.jpg"}
+                  alt={"Product Image"}
+                  className="lg:w-[80%] m-auto object-cover"
+                />
+              </div>
+              <div className="ml-2 mb-2">
+                <h2 className="text-lg pr-3 lg:text-xl font-semibold">{item.productName}</h2>
+                <p className="text-lg text-gray-600 font-bold">Price: ₹{item.price}</p>
+                <p className={`${item.count === 0 ? `hidden` : ``}`}>
+                  Quantity Purchased: <span className="font-semibold">{item.count}</span>
+                </p>
+                {/* Display the count */}
+              </div>
             </li>
           ))}
         </ul>

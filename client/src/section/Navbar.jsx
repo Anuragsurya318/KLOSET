@@ -29,14 +29,17 @@ const Navbar = () => {
 
   const handleCategoriesClick = () => {
     navigate("/categories");
+    setIsMenuOpen(false); // Close menu on click
   };
 
   const handleProductPageClick = () => {
     navigate("/product-page");
+    setIsMenuOpen(false); // Close menu on click
   };
 
   const handleLogoClick = () => {
     navigate("/");
+    setIsMenuOpen(false); // Close menu on click
   };
 
   const toggleMenu = () => {
@@ -45,19 +48,23 @@ const Navbar = () => {
 
   const handleHomeClick = () => {
     navigate("/");
+    setIsMenuOpen(false); // Close menu on click
   };
 
   const handleAuthClick = () => {
     if (auth.isLoggedIn) {
       logout();
+      setIsMenuOpen(false); // Close menu on click
     } else {
       setIsLoginForm(true); // Set to true to show login form
       setShowDialog(true); // Open dialog
+      setIsMenuOpen(false); // Close menu on click
     }
   };
 
   const handlePurchasedItemsClick = () => {
     navigate("/previously-purchased-items");
+    setIsMenuOpen(false); // Close menu on click
   };
 
   const handleCheckout = () => {
@@ -68,6 +75,7 @@ const Navbar = () => {
       clearCart();
       navigate("/");
     }
+    setIsMenuOpen(false); // Close menu on click
   };
 
   const calculateSubtotal = () => {
@@ -242,33 +250,17 @@ const Navbar = () => {
         </div>
       </div>
 
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent className="sm:max-w-[425px] bg-white p-6 rounded-lg shadow-lg">
+      <Dialog open={showDialog} onOpenChange={() => setShowDialog(false)}>
+        <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle className="text-xl font-semibold mb-2">
-              {isLoginForm ? "Login" : "Register"}
-            </DialogTitle>
+            <DialogTitle>{isLoginForm ? "Login" : "Sign Up"}</DialogTitle>
           </DialogHeader>
-          <div className="grid gap-4">
-            {isLoginForm ? (
-              <LoginForm
-                switchToRegister={() => {
-                  setIsLoginForm(false);
-                  setLoginError("");
-                }}
-                setShowDialog={setShowDialog}
-                setLoginError={setLoginError}
-              />
-            ) : (
-              <RegistrationForm
-                switchToLogin={() => {
-                  setIsLoginForm(true);
-                }}
-                setShowDialog={setShowDialog}
-              />
-            )}
-            {loginError && <p className="text-red-500">{loginError}</p>}
-          </div>
+          {isLoginForm ? (
+            <LoginForm setShowDialog={setShowDialog} setLoginError={setLoginError} />
+          ) : (
+            <RegistrationForm setShowDialog={setShowDialog} />
+          )}
+          {loginError && <p className="text-red-500 mt-2">{loginError}</p>}
         </DialogContent>
       </Dialog>
     </>
