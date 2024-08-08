@@ -71,7 +71,11 @@ const Navbar = () => {
   };
 
   const calculateSubtotal = () => {
-    return cartItems.reduce((total, item) => total + item.price, 0);
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  const calculateTotalQuantity = () => {
+    return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
   return (
@@ -124,9 +128,9 @@ const Navbar = () => {
                 <SheetTrigger asChild>
                   <div className="relative">
                     <PiShoppingCart className="text-2xl hover:cursor-pointer font-bold" />
-                    {cartItems.length > 0 && (
+                    {calculateTotalQuantity() > 0 && (
                       <span className="absolute top-[-5px] right-[-10px] bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                        {cartItems.length}
+                        {calculateTotalQuantity()}
                       </span>
                     )}
                   </div>
@@ -142,8 +146,11 @@ const Navbar = () => {
                       <ul>
                         {cartItems.map((item, index) => (
                           <li key={index} className="flex justify-between py-2 border-b">
-                            <span>{item.productName}</span>
-                            <span>₹{item.price}</span>
+                            <div>
+                              <span>{item.productName}</span> <br />
+                              <span>Qty: {item.quantity}</span>
+                            </div>
+                            <span>₹{item.price * item.quantity}</span>
                             <AiOutlineClose
                               className="text-red-500 cursor-pointer"
                               onClick={() => removeFromCart(item._id)}
@@ -165,7 +172,6 @@ const Navbar = () => {
                       </button>
                     </div>
                   </div>
-                  <SheetClose>Close</SheetClose>
                 </SheetContent>
               </Sheet>
             </div>

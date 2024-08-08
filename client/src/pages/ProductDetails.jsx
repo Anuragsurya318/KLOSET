@@ -57,10 +57,7 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = () => {
-    // Add the product to the cart quantity times
-    for (let i = 0; i < quantity; i++) {
-      addToCart({ ...product }); // Add a copy of the product with current quantity
-    }
+    addToCart(product, quantity); // Pass the product and the selected quantity to addToCart
   };
 
   const handleBuyNow = () => {
