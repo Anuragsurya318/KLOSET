@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Context/AuthContext";
 import { CategoriesPage, HomePage, LoginPage, RegistrationPage, ShopPage } from "./pages";
 import Navbar from "./section/Navbar";
-import ProductDetails from "./pages/ProductDetails"; // Import your new product details page
+import ProductDetails from "./pages/ProductDetails";
 import ProductPage from "./pages/ProductPage";
 import { CartProvider } from "./Context/CartContext";
 import PreviouslyPurchasedItems from "./pages/PreviouslyPurchasedItems";
