@@ -135,7 +135,7 @@ const Navbar = () => {
                     )}
                   </div>
                 </SheetTrigger>
-                <SheetContent className="overflow-auto">
+                <SheetContent className="overflow-auto lg:text-xl text-lg">
                   <SheetHeader>
                     <SheetTitle>Cart Items</SheetTitle>
                   </SheetHeader>
@@ -145,16 +145,22 @@ const Navbar = () => {
                     ) : (
                       <ul>
                         {cartItems.map((item, index) => (
-                          <li key={index} className="flex justify-between py-2 border-b">
+                          <li
+                            key={index}
+                            className="flex justify-between py-2 border-b hover:bg-zinc-50 duration-200"
+                          >
                             <div>
-                              <span>{item.productName}</span> <br />
+                              <div className="w-40">{item.productName}</div>
+                              <br />
                               <span>Qty: {item.quantity}</span>
                             </div>
-                            <span>₹{item.price * item.quantity}</span>
-                            <AiOutlineClose
-                              className="text-red-500 cursor-pointer"
-                              onClick={() => removeFromCart(item._id)}
-                            />
+                            <div className="flex flex-col justify-between items-center">
+                              <span>₹{item.price * item.quantity}</span>
+                              <AiOutlineClose
+                                className="text-red-500 cursor-pointer lg:text-2xl text-xl hover:size-7"
+                                onClick={() => removeFromCart(item._id)}
+                              />
+                            </div>
                           </li>
                         ))}
                       </ul>
@@ -166,9 +172,9 @@ const Navbar = () => {
                     <div className="mt-4 flex justify-end">
                       <button
                         onClick={handleCheckout}
-                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                        className="bg-[#B6002C] border-4 border-[#B6002C] hover:bg-transparent hover:text-[#B6002C] text-white font-semibold w-full py-1 lg:py-2"
                       >
-                        Checkout
+                        CHECKOUT
                       </button>
                     </div>
                   </div>
