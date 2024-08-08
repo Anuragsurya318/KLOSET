@@ -17,6 +17,7 @@ import {
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import RegistrationForm from "../components/RegistrationForm";
 import LoginForm from "../components/LoginForm";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,11 +30,6 @@ const Navbar = () => {
 
   const handleCategoriesClick = () => {
     navigate("/categories");
-    setIsMenuOpen(false); // Close menu on click
-  };
-
-  const handleProductPageClick = () => {
-    navigate("/product-page");
     setIsMenuOpen(false); // Close menu on click
   };
 
@@ -56,7 +52,7 @@ const Navbar = () => {
       logout();
       setIsMenuOpen(false); // Close menu on click
     } else {
-      setIsLoginForm(true); // Set to true to show login form
+      setIsLoginForm(true); // Show login form
       setShowDialog(true); // Open dialog
       setIsMenuOpen(false); // Close menu on click
     }
@@ -69,7 +65,7 @@ const Navbar = () => {
 
   const handleCheckout = () => {
     if (!auth.isLoggedIn) {
-      setIsLoginForm(true); // Set to true to show login form
+      setIsLoginForm(true); // Show login form
       setShowDialog(true); // Open dialog
     } else {
       clearCart();
@@ -250,17 +246,34 @@ const Navbar = () => {
         </div>
       </div>
 
-      <Dialog open={showDialog} onOpenChange={() => setShowDialog(false)}>
-        <DialogContent className="sm:max-w-[425px]">
+      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+        <DialogContent className="sm:max-w-[425px] bg-white p-6 rounded-lg shadow-lg">
           <DialogHeader>
-            <DialogTitle>{isLoginForm ? "Login" : "Sign Up"}</DialogTitle>
+            <DialogTitle className="text-xl font-semibold mb-2">
+              {isLoginForm ? "Login" : "Register"} Page
+            </DialogTitle>
+            <DialogDescription className="text-sm text-gray-600 mb-4">
+              {isLoginForm
+                ? "Please login to proceed with the purchase."
+                : "Please register to proceed with the purchase."}
+            </DialogDescription>
           </DialogHeader>
-          {isLoginForm ? (
-            <LoginForm setShowDialog={setShowDialog} setLoginError={setLoginError} />
-          ) : (
-            <RegistrationForm setShowDialog={setShowDialog} />
-          )}
-          {loginError && <p className="text-red-500 mt-2">{loginError}</p>}
+          <div className="grid gap-4">
+            {isLoginForm ? (
+              <LoginForm
+                switchToRegister={() => setIsLoginForm(false)}
+                setShowDialog={setShowDialog}
+                setLoginError={setLoginError}
+                redirectPath={"/"}
+              />
+            ) : (
+              <RegistrationForm
+                switchToLogin={() => setIsLoginForm(true)}
+                setShowDialog={setShowDialog}
+              />
+            )}
+            {loginError && <p className="text-red-500">{loginError}</p>}
+          </div>
         </DialogContent>
       </Dialog>
     </>

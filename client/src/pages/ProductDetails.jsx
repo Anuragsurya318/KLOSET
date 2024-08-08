@@ -12,14 +12,14 @@ import {
   DialogDescription,
   DialogHeader,
 } from "@/components/ui/dialog";
-import { Toaster, toast } from "sonner"; // Import the Toaster and toast from Sonner
+import { Toaster, toast } from "sonner";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [mainImage, setMainImage] = useState(""); // State for the main image
-  const [images, setImages] = useState([]); // State for product images
+  const [mainImage, setMainImage] = useState("");
+  const [images, setImages] = useState([]);
   const { addToCart } = useCart();
   const { auth, updateAvailableMoney, purchaseProduct } = useAuth();
   const [quantity, setQuantity] = useState(1);
@@ -37,12 +37,10 @@ const ProductDetails = () => {
         const foundProduct = response.data.products.find((product) => product._id === id);
         if (foundProduct) {
           setProduct(foundProduct);
-          // Set initial main image
           const initialImage = foundProduct.images.find(
             (img) => img.description === "main view"
           ).url;
           setMainImage(initialImage);
-          // Store images in state
           setImages(foundProduct.images);
         } else {
           console.error("Product not found");
