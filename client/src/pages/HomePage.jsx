@@ -17,7 +17,7 @@ const HomePage = () => {
           onClick={() => handleCategoryClick("Furniture")}
         >
           <img
-            src="https://minimalist-e-commerce.vercel.app/static/media/home-img-1.3de7da0f1e4634169c62.jpg"
+            src="https://img.freepik.com/premium-photo/aesthetic-modern-scandinavian-home-interior-design-elegant-living-room-with-comfortable-sofa-midcentury-furniture-cozy-carpet-wooden-floor-white-walls-home-plants_408798-11066.jpg"
             alt="Live Comfortable"
             className="w-full h-full object-cover"
           />
@@ -44,7 +44,7 @@ const HomePage = () => {
             onClick={() => handleCategoryClick("Kitchen")}
           >
             <img
-              src="https://minimalist-e-commerce.vercel.app/static/media/home-img-3.60734311499ba1dbbc41.jpg"
+              src="https://mbazar.co/cdn/shop/products/WhatsAppImage2022-07-19at1.40.09PM_800x.jpg?v=1658229218"
               alt="Kitchen"
               className="w-full h-full object-cover"
             />
