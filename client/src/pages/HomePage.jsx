@@ -30,7 +30,7 @@ const HomePage = () => {
           onClick={() => handleCategoryClick("Skin Care")}
         >
           <img
-            src="https://minimalist-e-commerce.vercel.app/static/media/home-img-2.4daa711cfda65062efd0.jpg"
+            src="https://wallpapercave.com/wp/wp10558592.jpg"
             alt="Skincare"
             className="w-full h-full object-cover"
           />
