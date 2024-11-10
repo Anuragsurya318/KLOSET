@@ -30,7 +30,7 @@ const HomePage = () => {
           onClick={() => handleCategoryClick("Skin Care")}
         >
           <img
-            src="https://voguesg.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2023/06/05135212/skincare-ingredients2-1-680x1020.png"
+            src="https://wallpapercave.com/wp/wp10558592.jpg"
             alt="Skincare"
             className="w-full h-full object-cover"
           />
