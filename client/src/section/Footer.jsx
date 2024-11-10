@@ -27,7 +27,7 @@ const Footer = () => {
           Contact Us
         </li>
       </ul>
-      <p className="text-center text-lg lg:text-xl mr-1">
+      <p className="text-center text-lg lg:text-xl mr-3">
         Developed with
         <a href="https://github.com/Anuragsurya318" target="_blank">
           ❤️
