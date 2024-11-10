@@ -65,7 +65,7 @@ const ProductsWeAreProudOf = () => {
             "RAOUF Products are all made to standard sizes so that you can mix and match them freely."
           }
           imageLink={
-            "https://minimalist-e-commerce.vercel.app/static/media/banner2.03a2ebf8d998e53d1019.jpg"
+            "https://img.freepik.com/premium-photo/aesthetic-modern-scandinavian-home-interior-design-elegant-living-room-with-comfortable-sofa-midcentury-furniture-cozy-carpet-wooden-floor-white-walls-home-plants_408798-11066.jpg"
           }
           where={"/categories"}
           straight={false}
@@ -77,7 +77,7 @@ const ProductsWeAreProudOf = () => {
             "RAOUF Products are all made to standard sizes so that you can mix and match them freely."
           }
           imageLink={
-            "https://minimalist-e-commerce.vercel.app/static/media/banner1.021adea5caa612e7dea0.jpg"
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR30eWH9S7ly1-T6OYeEK4dtSYOCiQ0asZEsw&s"
           }
           where={"/categories"}
           straight={true}
