@@ -28,7 +28,7 @@ const Footer = () => {
         </li>
       </ul>
       <p className="text-center text-lg lg:text-xl mr-3">
-        Developed with
+        Developed with &nbsp;
         <a href="https://github.com/Anuragsurya318" target="_blank">
           ❤️
         </a>
