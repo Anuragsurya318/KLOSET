@@ -77,7 +77,7 @@ const ProductsWeAreProudOf = () => {
             "RAOUF Products are all made to standard sizes so that you can mix and match them freely."
           }
           imageLink={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR30eWH9S7ly1-T6OYeEK4dtSYOCiQ0asZEsw&s"
+            "https://www.decorilla.com/online-decorating/wp-content/uploads/2023/08/Dark-living-room-aesthetic-with-an-eclectic-look.jpg"
           }
           where={"/categories"}
           straight={true}
