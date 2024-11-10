@@ -30,7 +30,7 @@ const HomePage = () => {
           onClick={() => handleCategoryClick("Skin Care")}
         >
           <img
-            src="https://wallpapercave.com/wp/wp10558592.jpg"
+            src="https://voguesg.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2023/06/05135212/skincare-ingredients2-1-680x1020.png"
             alt="Skincare"
             className="w-full h-full object-cover"
           />
@@ -57,7 +57,7 @@ const HomePage = () => {
             onClick={() => handleCategoryClick("Electronics")}
           >
             <img
-              src="https://minimalist-e-commerce.vercel.app/static/media/home-img-4.672d1d0d7656e2a778f6.jpg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5rgR8ehHWnOiXsuxpaldXslS2DaiE9RNRfA&s"
               alt="Electronics"
               className="w-full h-full object-cover"
             />
