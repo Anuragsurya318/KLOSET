@@ -44,7 +44,7 @@ const HomePage = () => {
             onClick={() => handleCategoryClick("Kitchen")}
           >
             <img
-              src="https://mbazar.co/cdn/shop/products/WhatsAppImage2022-07-19at1.40.09PM_800x.jpg?v=1658229218"
+              src="https://justyours.vasubhut.com/static/media/home-img-3.60734311499ba1dbbc41.jpg"
               alt="Kitchen"
               className="w-full h-full object-cover"
             />
@@ -57,7 +57,7 @@ const HomePage = () => {
             onClick={() => handleCategoryClick("Electronics")}
           >
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5rgR8ehHWnOiXsuxpaldXslS2DaiE9RNRfA&s"
+              src="https://justyours.vasubhut.com/static/media/home-img-4.672d1d0d7656e2a778f6.jpg"
               alt="Electronics"
               className="w-full h-full object-cover"
             />
